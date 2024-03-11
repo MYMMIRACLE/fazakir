@@ -8,7 +8,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Navigation Bar Example',
+      title: 'Fzaker',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
@@ -42,7 +42,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Navigation Bar Example'),
+        title: Text('Fzaker'),
       ),
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
@@ -51,19 +51,19 @@ class _MyHomePageState extends State<MyHomePage> {
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: 'Home',
+            label: 'القبلة',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.search),
-            label: 'Search',
+            label: 'القران',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.favorite),
-            label: 'Favorites',
+            label: 'اوقات الصلاة',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: 'Profile',
+            label: 'الرئيسية',
           ),
         ],
         currentIndex: _selectedIndex,
