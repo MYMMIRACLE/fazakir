@@ -74,11 +74,11 @@ class _MyHomePageState extends State<MyHomePage> {
                 label: 'القبلة',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.search),
+                icon: Icon(Icons.menu_book_rounded),
                 label: 'القران',
               ),
               BottomNavigationBarItem(
-                icon: Icon(Icons.favorite),
+                icon: Icon(Icons.mosque),
                 label: 'اوقات الصلاة',
               ),
               BottomNavigationBarItem(
