@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Fzaker',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.green,
       ),
       home: MyHomePage(),
     );
@@ -26,10 +26,10 @@ class _MyHomePageState extends State<MyHomePage> {
   int _selectedIndex = 0;
 
   List<Widget> _widgetOptions = <Widget>[
-    Text('Home Page'),
-    Text('Search Page'),
-    Text('Favorites Page'),
-    Text('Profile Page'),
+    Text('القبلة'),
+    Text('القران'),
+    Text('اوقات الصلاة'),
+    Text('الرئيسية'),
   ];
 
   void _onItemTapped(int index) {
@@ -47,29 +47,44 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         child: _widgetOptions.elementAt(_selectedIndex),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'القبلة',
+      bottomNavigationBar: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.search),
-            label: 'القران',
+          border: Border.all(color: Colors.grey.shade400), // Border color
+        ),
+        child: ClipRRect(
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite),
-            label: 'اوقات الصلاة',
+          child: BottomNavigationBar(
+            items: const <BottomNavigationBarItem>[
+              BottomNavigationBarItem(
+                icon: Icon(Icons.compass_calibration),
+                label: 'القبلة',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.search),
+                label: 'القران',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.favorite),
+                label: 'اوقات الصلاة',
+              ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.home),
+                label: 'الرئيسية',
+              ),
+            ],
+            currentIndex: _selectedIndex,
+            selectedItemColor: Colors.green, // Selected icon color
+            unselectedItemColor: Colors.grey, // Unselected icon color
+            onTap: _onItemTapped,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'الرئيسية',
-          ),
-        ],
-        currentIndex: _selectedIndex,
-        selectedItemColor: Colors.green, // Selected icon color
-        unselectedItemColor: Colors.grey, // Unselected icon color
-        onTap: _onItemTapped,
+        ),
       ),
     );
   }
