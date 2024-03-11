@@ -50,15 +50,22 @@ class _MyHomePageState extends State<MyHomePage> {
       bottomNavigationBar: Container(
         decoration: BoxDecoration(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(40.0),
+            topRight: Radius.circular(40.0),
           ),
-          border: Border.all(color: Colors.grey.shade400), // Border color
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 1,
+              blurRadius: 6,
+              offset: Offset(0, 3),
+            ),
+          ],
         ),
         child: ClipRRect(
           borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(20.0),
-            topRight: Radius.circular(20.0),
+            topLeft: Radius.circular(40.0),
+            topRight: Radius.circular(40.0),
           ),
           child: BottomNavigationBar(
             items: const <BottomNavigationBarItem>[
