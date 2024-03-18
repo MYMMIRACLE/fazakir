@@ -13,7 +13,6 @@ class QuranRepository {
       List<QuranVerse> verses = (jsonDecode(jsonData) as List)
           .map((data) => QuranVerse.fromJson(data))
           .toList();
-
       return verses;
     } on Exception catch (err) {
       log(err.toString());

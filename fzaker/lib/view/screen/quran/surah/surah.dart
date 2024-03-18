@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/constant/color.dart';
+import '../../../../core/constant/color.dart';
 
 class SurahScreen extends StatefulWidget {
   const SurahScreen({super.key});
@@ -36,7 +36,9 @@ class _SurahScreenState extends State<SurahScreen> {
                 subTitle: "الجزء: ${surah.para}",
                 leadingTitle: "عدد الايات: ${surah.totalAyat}",
                 trailingTitle: surah.suraNo,
-                onTap: () {},
+                onTap: () {
+                  Navigator.pushNamed(context, "/moshaf");
+                },
               );
             },
           );
@@ -64,7 +66,7 @@ class QuranDataCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(bottom: 12.w),
-      child: GestureDetector(
+      child: InkWell(
         onTap: onTap,
         child: Row(
           children: [

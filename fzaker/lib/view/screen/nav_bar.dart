@@ -1,4 +1,5 @@
 import 'package:fazakir/logic/hadith_cubit/hadith_cubit.dart';
+import 'package:fazakir/logic/quran_cubit/quran_cubit.dart';
 import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -25,8 +26,15 @@ class _NavBarScreenState extends State<NavBarScreen> {
       child: const HomeScreen(),
     ), // 0
     const AwkatAlSalahScreen(), //1
-    BlocProvider(
-      create: (context) => SurahCubit(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => SurahCubit(),
+        ),
+        BlocProvider(
+          create: (context) => QuranCubit(),
+        ),
+      ],
       child: const QuranScreen(),
     ), // 2
     const AlKeplaScreen(), // 3
