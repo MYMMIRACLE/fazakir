@@ -43,6 +43,7 @@ class _MyAppState extends State<MyApp> {
             "/nokdem": (context) => const NokdemLkScreen(),
             "/azkar": (context) => const AlAzkarScreen(),
             "/altsbeeh": (context) => const AlTsbeehScreen(),
+            
             "/moshaf": (context) => BlocProvider(
                   create: (context) => QuranCubit(),
                   child: const MoshafScreen(),

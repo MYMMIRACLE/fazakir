@@ -1,5 +1,3 @@
-
-
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:fazakir/core/constant/color.dart';
 import 'package:fazakir/logic/quran_cubit/quran_cubit.dart';
@@ -23,7 +21,7 @@ class _MoshafScreenState extends State<MoshafScreen> {
   }
 
   ArabicNumbers arabicNumber = ArabicNumbers();
-
+  int linesPerPage = 15;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,6 +36,7 @@ class _MoshafScreenState extends State<MoshafScreen> {
             return Container(
               color: MyColors.green.withOpacity(0.2),
               child: PageView.builder(
+                scrollDirection: Axis.horizontal,
                 itemCount: 20,
                 itemBuilder: (context, index) {
                   return ListView.builder(
