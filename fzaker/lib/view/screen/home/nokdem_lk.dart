@@ -2,6 +2,9 @@ import 'package:fazakir/core/helper/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
+import '../../../core/constant/color.dart';
+import '../../widget/custom_text.dart';
+
 class NokdemLkScreen extends StatelessWidget {
   const NokdemLkScreen({super.key});
 
@@ -78,7 +81,7 @@ class BuildNokdemLkCategoryCard extends StatelessWidget {
     return GestureDetector(
       onTap: onPressed,
       child: Container(
-        margin: EdgeInsets.only(top: 16.h),
+        margin: EdgeInsets.only(top: 16.w),
         padding: EdgeInsets.all(8.w),
         height: 64.h,
         width: ScreenSize.width,
@@ -91,21 +94,21 @@ class BuildNokdemLkCategoryCard extends StatelessWidget {
             width: 48.w,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(8),
-                color: Colors.green.withOpacity(0.15)),
+                color: MyColors.green.withOpacity(0.15)),
             child: const Icon(
               Icons.headset_mic_outlined,
-              color: Colors.green,
+              color: MyColors.green,
             ),
           ),
           SizedBox(width: 12.w),
-          Text(
+          CustomText(
             title,
-            style: TextStyle(fontSize: 16.sp),
+            fontSize: 16,
           ),
           const Spacer(),
           const Icon(
             Icons.arrow_forward_ios_rounded,
-            color: Colors.green,
+            color: MyColors.green,
           )
         ]),
       ),

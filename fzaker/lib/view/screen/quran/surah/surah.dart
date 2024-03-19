@@ -1,3 +1,4 @@
+import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
 import 'package:fazakir/view/widget/custom_text.dart';
 import 'package:fazakir/view/widget/loading_indicator.dart';
@@ -15,6 +16,7 @@ class SurahScreen extends StatefulWidget {
 }
 
 class _SurahScreenState extends State<SurahScreen> {
+  ArabicNumbers arabicNumber = ArabicNumbers();
   @override
   Widget build(BuildContext context) {
     return Scaffold(body: BlocBuilder<SurahCubit, SurahState>(
@@ -33,8 +35,9 @@ class _SurahScreenState extends State<SurahScreen> {
               final surah = state.suraDataList[index];
               return QuranDataCard(
                 title: surah.suraName,
-                subTitle: "الجزء: ${surah.para}",
-                leadingTitle: "عدد الايات: ${surah.totalAyat}",
+                subTitle: "الجزء: ${arabicNumber.convert(surah.para)}",
+                leadingTitle:
+                    "عدد الايات: ${arabicNumber.convert(surah.totalAyat)}",
                 trailingTitle: surah.suraNo,
                 onTap: () {
                   Navigator.pushNamed(context, "/moshaf");

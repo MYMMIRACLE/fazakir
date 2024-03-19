@@ -5,8 +5,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/helper/media_query.dart';
-import '../screen/home/alazkar.dart';
+import '../screen/home/azkar/alazkar.dart';
 import '../screen/home/altsbeeh.dart';
+import '../screen/home/azkar/azkar_card.dart';
 import '../screen/home/nokdem_lk.dart';
 import '../screen/nav_bar.dart';
 import '../screen/quran/surah/moshaf.dart';
@@ -43,7 +44,7 @@ class _MyAppState extends State<MyApp> {
             "/nokdem": (context) => const NokdemLkScreen(),
             "/azkar": (context) => const AlAzkarScreen(),
             "/altsbeeh": (context) => const AlTsbeehScreen(),
-            
+            "/azkarCard": (context) => const AzkarCardScreen(),
             "/moshaf": (context) => BlocProvider(
                   create: (context) => QuranCubit(),
                   child: const MoshafScreen(),
