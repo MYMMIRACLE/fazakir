@@ -1,5 +1,5 @@
-import 'dart:async';
 
+import 'package:fazakir/core/cache/cache.dart';
 import 'package:fazakir/core/constant/color.dart';
 import 'package:fazakir/core/helper/media_query.dart';
 import 'package:fazakir/logic/hadith_cubit/hadith_cubit.dart';
@@ -7,13 +7,13 @@ import 'package:fazakir/view/widget/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import '../../widget/app_bar_bg.dart';
 import '../../widget/custom_text.dart';
 import '../../widget/el_ahsa2yat_card.dart';
 import '../../widget/hadith_card.dart';
 import '../../widget/nodem_lak.dart';
 import '../../widget/test_space_button.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -27,14 +27,20 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<HadithCubit>(context).getHadithData();
-    //! scheduleFetchData();
-  }
+    }
+
+  String defaultHadith =
+      "حدثنا ابو النعمان، حدثنا حماد بن زيد، حدثنا ايوب، عن نافع، عن ابن عمر رضى الله عنهما قال فرض النبي صلى الله عليه وسلم صدقة الفطر او قال رمضان على الذكر والانثى، والحر والمملوك، صاعا من تمر او صاعا من شعير، فعدل الناس به نصف صاع من بر. فكان ابن عمر رضى الله عنهما يعطي التمر، فاعوز اهل المدينة من التمر فاعطى شعيرا، فكان ابن عمر يعطي عن الصغير والكبير، حتى ان كان يعطي عن بني، وكان ابن عمر رضى الله عنهما يعطيها الذين يقبلونها، وكانوا يعطون قبل الفطر بيوم او يومين";
 
   // void scheduleFetchData() {
-  //!   Timer.periodic(const Duration(hours: 24), (Timer timer) {
-  //     BlocProvider.of<HadithCubit>(context).getHadithData();
+  //   Timer.periodic(const Duration(minutes: 10), (Timer timer) {
+  //     BlocProvider.of<HadithCubit>( context).getHadithData();
+  //     scheduleFetchData();
   //   });
   // }
+
+  dynamic hadith = CacheData.getdata(key: "hadith");
+
   double sliderValue = 20;
   @override
   Widget build(BuildContext context) {
@@ -201,17 +207,23 @@ class _HomeScreenState extends State<HomeScreen> {
                       );
                     }
                     if (state is HadithSuccess) {
-                      final hadith = state.hadithElYoum;
                       return Column(
                         children: [
                           HadithCard(
-                              title: "حديث اليوم", content: hadith.hadithText),
+                              title: "حديث اليوم",
+                              content: state.hadithElYoum.toString()),
                           HadithCard(
-                              title: "دعاء اليوم", content: hadith.hadithText),
+                              title: "دعاء اليوم",
+                              content: state.hadithElYoum.toString()),
                         ],
                       );
                     }
-                    return Container();
+                    return Column(
+                      children: [
+                        HadithCard(title: "حديث اليوم", content: hadith),
+                        HadithCard(title: "دعاء اليوم", content: hadith),
+                      ],
+                    );
                   },
                 ),
                 SizedBox(height: 24.h)
@@ -222,6 +234,30 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
+
+  // backgroundFetchHeadlessTask() async {
+  //   WidgetsFlutterBinding.ensureInitialized();
+  //   getHadithData(context);
+
+  //   BackgroundFetch.finish(defaultHadith);
+  // }
+
+  // void initPlatformState() {
+  //   BackgroundFetch.configure(
+  //           BackgroundFetchConfig(
+  //             minimumFetchInterval: 2,
+  //             stopOnTerminate: false,
+  //             enableHeadless: true,
+  //             startOnBoot: true,
+  //             requiredNetworkType: NetworkType.ANY,
+  //           ),
+  //           backgroundFetchHeadlessTask)
+  //       .then((int status) {
+  //     log('[BackgroundFetch] configure success: $status');
+  //   }).catchError((e) {
+  //     log('[BackgroundFetch] configure ERROR: $e');
+  //   });
+  // }
 }
 
 Widget buildAwkatElSalahCard({required String title, required String time}) {

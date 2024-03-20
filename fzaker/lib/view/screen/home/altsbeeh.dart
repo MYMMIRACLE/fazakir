@@ -1,19 +1,15 @@
 import 'package:fazakir/core/helper/media_query.dart';
+import 'package:fazakir/logic/tasbeeh_cubit/tasbeeh_cubit.dart';
 import 'package:fazakir/view/widget/custom_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../../core/constant/color.dart';
 
-class AlTsbeehScreen extends StatefulWidget {
+class AlTsbeehScreen extends StatelessWidget {
   const AlTsbeehScreen({super.key});
 
-  @override
-  State<AlTsbeehScreen> createState() => _AlTsbeehScreenState();
-}
-
-class _AlTsbeehScreenState extends State<AlTsbeehScreen> {
-  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Directionality(
@@ -25,16 +21,11 @@ class _AlTsbeehScreenState extends State<AlTsbeehScreen> {
             fontSize: 20,
             fontWeight: FontWeight.w500,
           ),
-          //  Text(
-          //   "التسبيح",
-          //   style: TextStyle(fontSize: 20.sp),
-          // ),
           actions: [
             buildIconButton(
                 iconData: Icons.replay_outlined,
                 onTap: () {
-                  counter = 0;
-                  setState(() {});
+                  BlocProvider.of<TasbeehCubit>(context).resetTasbeehCounter();
                 }),
             buildIconButton(iconData: Icons.vibration, onTap: () {}),
             Padding(
@@ -44,69 +35,75 @@ class _AlTsbeehScreenState extends State<AlTsbeehScreen> {
         ),
         body: Padding(
           padding: EdgeInsets.symmetric(horizontal: 18.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              const Spacer(flex: 4),
-              Align(
-                alignment: Alignment.center,
-                child: InkWell(
-                  child: Stack(
-                    alignment: Alignment.center,
+          child: BlocBuilder<TasbeehCubit,TasbeehState>(builder: (context, state) {
+            final cubit = BlocProvider.of<TasbeehCubit>(context);
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Spacer(flex: 2),
+                CustomText(
+                  cubit.tasbeehButtonLabel.toString(),
+                  fontSize: 28,
+                  fontWeight: FontWeight.w700,
+                ),
+                const Spacer(flex: 2),
+                Align(
+                  alignment: Alignment.center,
+                  child: InkWell(
+                    child: Stack(
+                      alignment: Alignment.center,
+                      children: [
+                        Image.asset(
+                          "assets/image/counter.png",
+                          width: ScreenSize.width / 1.56,
+                          height: ScreenSize.width / 1.56,
+                        ),
+                        InkWell(
+                          splashColor: Colors.transparent,
+                          highlightColor: Colors.transparent,
+                          onTap: () {
+                            cubit.incrementTasbeehCounter();
+                          },
+                          child: CircleAvatar(
+                              radius: 100.w,
+                              backgroundColor: MyColors.green,
+                              child: CustomText(
+                                "${cubit.tasbeehCounter}/33\nالجولة: 01",
+                                textAlign: TextAlign.center,
+                                fontSize: 24,
+                                color: MyColors.white,
+                                fontWeight: FontWeight.w500,
+                              )
+                              //  Text(
+                              //   "$counter/33\nالجولة: 01",
+                              //   textAlign: TextAlign.center,
+                              //   style:
+                              //       TextStyle(color: Colors.white, fontSize: 24.sp),
+                              // ),
+                              ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(top: 5.h),
+                  child: Row(
                     children: [
-                      Image.asset(
-                        "assets/image/counter.png",
-                        width:ScreenSize.width/1.56,
-                        height: ScreenSize.width/1.56,
-                      ),
-                      InkWell(
-                        splashColor: Colors.transparent,
-                        highlightColor: Colors.transparent,
-                        onTap: () {
-                          if (counter < 33) {
-                            counter++;
-                            setState(() {});
-                          }
-                        },
-                        child: CircleAvatar(
-                            radius: 100.w,
-                            backgroundColor: MyColors.green,
-                            child: CustomText(
-                              "$counter/33\nالجولة: 01",
-                              textAlign: TextAlign.center,
-                              fontSize: 24,
-                              color: MyColors.white,
-                              fontWeight: FontWeight.w500,
-                            )
-                            //  Text(
-                            //   "$counter/33\nالجولة: 01",
-                            //   textAlign: TextAlign.center,
-                            //   style:
-                            //       TextStyle(color: Colors.white, fontSize: 24.sp),
-                            // ),
-                            ),
-                      ),
+                      buildIconButton(
+                          iconData: Icons.mode_edit_outline_outlined,
+                          onTap: () {},
+                          scale: 48),
+                      const Spacer(),
+                      buildIconButton(
+                          iconData: Icons.play_arrow, onTap: () {}, scale: 48),
                     ],
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsets.only(top: 5.h),
-                child: Row(
-                  children: [
-                    buildIconButton(
-                        iconData: Icons.mode_edit_outline_outlined,
-                        onTap: () {},
-                        scale: 48),
-                    const Spacer(),
-                    buildIconButton(
-                        iconData: Icons.play_arrow, onTap: () {}, scale: 48),
-                  ],
-                ),
-              ),
-              const Spacer(),
-            ],
-          ),
+                const Spacer(),
+              ],
+            );
+          }),
         ),
       ),
     );

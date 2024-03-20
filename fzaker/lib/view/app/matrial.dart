@@ -1,5 +1,6 @@
 import 'package:fazakir/data/repository/hadith_data.dart';
 import 'package:fazakir/logic/quran_cubit/quran_cubit.dart';
+import 'package:fazakir/logic/tasbeeh_cubit/tasbeeh_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -35,21 +36,24 @@ class _MyAppState extends State<MyApp> {
       minTextAdapt: true,
       splitScreenMode: true,
       child: Builder(builder: (_) {
-        return MaterialApp(
-          debugShowCheckedModeBanner: false,
-          initialRoute: "/",
-          routes: {
-            "/": (context) => const SplashScreen(),
-            "/nav": (context) => const NavBarScreen(),
-            "/nokdem": (context) => const NokdemLkScreen(),
-            "/azkar": (context) => const AlAzkarScreen(),
-            "/altsbeeh": (context) => const AlTsbeehScreen(),
-            "/azkarCard": (context) => const AzkarCardScreen(),
-            "/moshaf": (context) => BlocProvider(
-                  create: (context) => QuranCubit(),
-                  child: const MoshafScreen(),
-                ),
-          },
+        return BlocProvider(
+          create: (context) => QuranCubit(),
+          child: MaterialApp(
+            debugShowCheckedModeBanner: false,
+            initialRoute: "/",
+            routes: {
+              "/": (context) => const SplashScreen(),
+              "/nav": (context) => const NavBarScreen(),
+              "/nokdem": (context) => const NokdemLkScreen(),
+              "/azkar": (context) => const AlAzkarScreen(),
+              "/altsbeeh": (context) => BlocProvider(
+                    create: (context) => TasbeehCubit(),
+                    child: const AlTsbeehScreen(),
+                  ),
+              "/azkarCard": (context) => const AzkarCardScreen(),
+              // "/moshaf": (context) => const MoshafScreen(),
+            },
+          ),
         );
       }),
     );

@@ -1,5 +1,6 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
+import 'package:fazakir/view/screen/quran/surah/moshaf.dart';
 import 'package:fazakir/view/widget/custom_text.dart';
 import 'package:fazakir/view/widget/loading_indicator.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,11 @@ class _SurahScreenState extends State<SurahScreen> {
                     "عدد الايات: ${arabicNumber.convert(surah.totalAyat)}",
                 trailingTitle: surah.suraNo,
                 onTap: () {
-                  Navigator.pushNamed(context, "/moshaf");
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => MoshafScreen(
+                              surahName: state.suraDataList[index].suraNo)));
                 },
               );
             },

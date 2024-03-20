@@ -8,7 +8,7 @@ class HadithInitial extends HadithState {}
 class HadithLoading extends HadithState {}
 
 class HadithSuccess extends HadithState {
-  final HadithDataModel hadithElYoum;
+  final dynamic hadithElYoum;
 
   HadithSuccess({required this.hadithElYoum});
 }

@@ -10,16 +10,22 @@ part 'quran_state.dart';
 
 class QuranCubit extends Cubit<QuranState> {
   QuranCubit() : super(QuranInitial());
-  Future<void> quranVerse() async {
+  Future<void> quranVerse({required String jsonName}) async {
     emit(QuranLoading());
     try {
-      List<QuranVerse> quranDataList = await QuranRepository.getQuranVerses();
+      log("cubit start");
+      List<QuranVerse> quranDataList =
+          await QuranRepository.getQuranVerses(jsonName: jsonName);
       emit(QuranSuccess(quranDataList: quranDataList));
+      // for (var element in quranDataList) {
+      //   log(element.sura);
+      //   log(element.ayat);
+      // }
     } catch (err) {
       emit(QuranFailure(errMessage: "There was an error!"));
       log(err.toString());
       return Future.error(
-          "hadith cubit error: ", StackTrace.fromString("this is the trace"));
+          "quran cubit error: ", StackTrace.fromString("this is the trace"));
     }
   }
 }
