@@ -2,8 +2,8 @@ import 'package:fazakir/core/helper/media_query.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/constant/color.dart';
-import '../../widget/custom_text.dart';
+import '../../core/constant/color.dart';
+import '../widget/custom_text.dart';
 
 class NokdemLkScreen extends StatelessWidget {
   const NokdemLkScreen({super.key});

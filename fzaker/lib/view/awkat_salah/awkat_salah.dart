@@ -1,14 +1,32 @@
+import 'dart:developer';
+
+import 'package:fazakir/logic/prayer_time_cubit/prayer_time_cubit.dart';
 import 'package:fazakir/view/widget/app_bar_bg.dart';
 import 'package:fazakir/view/widget/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../core/constant/color.dart';
-import '../../../core/helper/media_query.dart';
+import '../../core/constant/color.dart';
 
-class AwkatAlSalahScreen extends StatelessWidget {
+import '../../core/helper/media_query.dart';
+import '../../data/model/prayer_time.dart';
+
+class AwkatAlSalahScreen extends StatefulWidget {
   const AwkatAlSalahScreen({super.key});
 
+  @override
+  State<AwkatAlSalahScreen> createState() => _AwkatAlSalahScreenState();
+}
+
+class _AwkatAlSalahScreenState extends State<AwkatAlSalahScreen> {
+  @override
+  void initState() {
+    super.initState();
+    BlocProvider.of<PrayerTimeCubit>(context).getCurrentLocation();
+  }
+
+  PrayerTime? prayerTime;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,8 +37,7 @@ class AwkatAlSalahScreen extends StatelessWidget {
             children: [
               const AppBarBackground(),
               Padding(
-                padding: EdgeInsets.only(
-                    left: 12.w, right: 12.w, top: ScreenSize.height * 0.144),
+                padding: EdgeInsets.only(left: 12.w, right: 12.w, top: 110.w),
                 child: Row(
                   children: [
                     Image.asset(
@@ -48,13 +65,25 @@ class AwkatAlSalahScreen extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 18.w),
             child: Column(
               children: [
-                Container(
-                    alignment: Alignment.center,
-                    height: 200.h,
-                    width: ScreenSize.width,
-                    color: MyColors.grey.withOpacity(0.2),
-                    child: const Text("Calender")),
-                const BuildAwkatSalahCard(title: "الفجر", time: "4:50 ص"),
+                BlocConsumer<PrayerTimeCubit, PrayerTimeState>(
+                  listener: (context, state) {
+                    if (state is PrayerTimeSuccess) {
+                      prayerTime = state.prayerTimeData;
+                      log(prayerTime!.data[0].timings.asr);
+                    }
+                  },
+                  builder: (context, state) {
+                    return Container(
+                        alignment: Alignment.center,
+                        height: 200.h,
+                        width: ScreenSize.width,
+                        color: MyColors.grey.withOpacity(0.2),
+                        child: const Text("Calender"));
+                  },
+                ),
+                BuildAwkatSalahCard(
+                    title: prayerTime?.data[0].timings.fajr ?? "",
+                    time: "4:50 ص"),
                 const BuildAwkatSalahCard(title: "الشروق", time: "4:50 ص"),
                 const BuildAwkatSalahCard(title: "الظهر", time: "4:50 ص"),
                 const BuildAwkatSalahCard(title: "العصر", time: "4:50 ص"),

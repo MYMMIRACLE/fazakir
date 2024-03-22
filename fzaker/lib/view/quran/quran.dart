@@ -1,14 +1,14 @@
 import 'package:fazakir/core/helper/media_query.dart';
 import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
-import 'package:fazakir/view/screen/quran/favorite.dart';
-import 'package:fazakir/view/screen/quran/juz.dart';
-import 'package:fazakir/view/screen/quran/surah/surah.dart';
+import 'package:fazakir/view/quran/favorite.dart';
+import 'package:fazakir/view/quran/juz.dart';
+import 'package:fazakir/view/quran/surah/surah.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../../core/constant/color.dart';
-import '../../widget/app_bar_bg.dart';
-import '../../widget/custom_text.dart';
+import '../../core/constant/color.dart';
+import '../widget/app_bar_bg.dart';
+import '../widget/custom_text.dart';
 
 class QuranScreen extends StatefulWidget {
   const QuranScreen({Key? key}) : super(key: key);

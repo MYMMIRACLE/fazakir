@@ -1,5 +1,5 @@
 import 'package:fazakir/logic/quran_cubit/quran_cubit.dart';
-import 'package:fazakir/view/screen/quran/surah/surah.dart';
+import 'package:fazakir/view/quran/surah/surah.dart';
 import 'package:fazakir/view/widget/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

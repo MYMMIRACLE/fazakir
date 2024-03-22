@@ -3,7 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constant/color.dart';
 import '../../core/helper/media_query.dart';
-import '../screen/home/home.dart';
+import '../home/home.dart';
 import 'custom_text.dart';
 import 'test_space_button.dart';
 

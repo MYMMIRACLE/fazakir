@@ -2,8 +2,8 @@ import 'package:fazakir/view/widget/custom_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../core/constant/color.dart';
-import '../../core/helper/media_query.dart';
+import '../core/constant/color.dart';
+import '../core/helper/media_query.dart';
 
 class AlKeplaScreen extends StatelessWidget {
   const AlKeplaScreen({super.key});

@@ -4,7 +4,7 @@ import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/constant/color.dart';
+import '../core/constant/color.dart';
 import 'account.dart';
 import 'awkat_salah/awkat_salah.dart';
 import 'home/home.dart';

@@ -1,13 +1,13 @@
 import 'package:arabic_numbers/arabic_numbers.dart';
 import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
-import 'package:fazakir/view/screen/quran/surah/moshaf.dart';
+import 'package:fazakir/view/quran/surah/moshaf.dart';
 import 'package:fazakir/view/widget/custom_text.dart';
 import 'package:fazakir/view/widget/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-import '../../../../core/constant/color.dart';
+import '../../../core/constant/color.dart';
 
 class SurahScreen extends StatefulWidget {
   const SurahScreen({super.key});

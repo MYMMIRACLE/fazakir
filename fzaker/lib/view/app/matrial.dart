@@ -6,12 +6,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/helper/media_query.dart';
-import '../screen/home/azkar/alazkar.dart';
-import '../screen/home/altsbeeh.dart';
-import '../screen/home/azkar/azkar_card.dart';
-import '../screen/home/nokdem_lk.dart';
-import '../screen/nav_bar.dart';
-import '../screen/splash.dart';
+import '../../logic/prayer_time_cubit/prayer_time_cubit.dart';
+import '../home/azkar/alazkar.dart';
+import '../home/altsbeeh.dart';
+import '../home/azkar/azkar_card.dart';
+import '../home/nokdem_lk.dart';
+import '../nav_bar.dart';
+import '../splash.dart';
 
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
@@ -42,7 +43,10 @@ class _MyAppState extends State<MyApp> {
             initialRoute: "/",
             routes: {
               "/": (context) => const SplashScreen(),
-              "/nav": (context) => const NavBarScreen(),
+              "/nav": (context) => BlocProvider(
+                    create: (context) => PrayerTimeCubit(),
+                    child: const NavBarScreen(),
+                  ),
               "/nokdem": (context) => const NokdemLkScreen(),
               "/azkar": (context) => const AlAzkarScreen(),
               "/altsbeeh": (context) => BlocProvider(
