@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../core/constant/color.dart';
 import '../core/helper/media_query.dart';
+import 'widget/app_bar_bg.dart';
 
 class AlKeplaScreen extends StatelessWidget {
   const AlKeplaScreen({super.key});
@@ -12,25 +13,20 @@ class AlKeplaScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
         body: SingleChildScrollView(
-          child: Column(
-                children: [
+      child: Column(
+        children: [
           Stack(
             children: [
-              Image.asset(
-                "assets/image/mosque_app_bar.png",
-                width: ScreenSize.width,
-                fit: BoxFit.fitWidth,
-              ),
+              const AppBarBackground(),
               Padding(
-                padding: EdgeInsets.only(
-                    left: 12.w, right: 12.w, top: ScreenSize.height * 0.144),
+                padding: EdgeInsets.only(left: 12.w, right: 12.w, top: 110.w),
                 child: Row(
                   children: [
                     Image.asset(
                       "assets/image/kepla.png",
                       color: MyColors.white,
-                       width: 28.w,
-                        height: 28.w,
+                      width: 28.w,
+                      height: 28.w,
                     ),
                     SizedBox(width: 12.w),
                     Text(
@@ -67,9 +63,9 @@ class AlKeplaScreen extends StatelessWidget {
               ],
             ),
           )
-                ],
-              ),
-        ));
+        ],
+      ),
+    ));
   }
 
   Widget buildIconButton(

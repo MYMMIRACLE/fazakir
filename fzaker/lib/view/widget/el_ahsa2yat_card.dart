@@ -12,7 +12,7 @@ class El27sa2yatCard extends StatelessWidget {
     this.onTap,
   });
   final String title;
-  final String counterTitle;
+  final dynamic counterTitle;
   final void Function()? onTap;
   @override
   Widget build(BuildContext context) {
@@ -32,7 +32,7 @@ class El27sa2yatCard extends StatelessWidget {
                 fontSize: 12,
                 color: MyColors.grey,
                 fontWeight: FontWeight.w500),
-            CustomText(counterTitle,
+            CustomText(counterTitle.toString(),
                 fontSize: 16,
                 color: MyColors.green,
                 fontWeight: FontWeight.w500),

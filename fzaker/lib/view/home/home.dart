@@ -6,8 +6,6 @@ import 'package:fazakir/view/widget/loading_indicator.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import '../../core/helper/location_helper.dart';
-import '../../logic/prayer_time_cubit/prayer_time_cubit.dart';
 import '../widget/app_bar_bg.dart';
 import '../widget/custom_text.dart';
 import '../widget/el_ahsa2yat_card.dart';
@@ -27,7 +25,6 @@ class _HomeScreenState extends State<HomeScreen> {
   void initState() {
     super.initState();
     BlocProvider.of<HadithCubit>(context).getHadithData();
-
   }
 
   String defaultHadith =
@@ -183,7 +180,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   children: [
                     El27sa2yatCard(
                       title: "التسبيح",
-                      counterTitle: "0000",
+                      counterTitle: CacheData.getdata(key: 'tasbeeh') ?? "0000",
                       onTap: () {
                         Navigator.pushNamed(context, "/altsbeeh");
                       },

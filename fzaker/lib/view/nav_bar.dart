@@ -1,6 +1,7 @@
 import 'package:fazakir/logic/hadith_cubit/hadith_cubit.dart';
 import 'package:fazakir/logic/quran_cubit/quran_cubit.dart';
 import 'package:fazakir/logic/surah_cubit/surah_cubit.dart';
+import 'package:fazakir/logic/tasbeeh_cubit/tasbeeh_cubit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -21,8 +22,15 @@ class NavBarScreen extends StatefulWidget {
 class _NavBarScreenState extends State<NavBarScreen> {
   int currentIndex = 0;
   final List<Widget> pages = [
-    BlocProvider(
-      create: (context) => HadithCubit(),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider(
+          create: (context) => HadithCubit(),
+        ),
+        BlocProvider(
+          create: (context) => TasbeehCubit(),
+        ),
+      ],
       child: const HomeScreen(),
     ), // 0
     const AwkatAlSalahScreen(), //1

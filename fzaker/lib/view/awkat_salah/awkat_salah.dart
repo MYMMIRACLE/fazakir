@@ -23,7 +23,7 @@ class _AwkatAlSalahScreenState extends State<AwkatAlSalahScreen> {
   @override
   void initState() {
     super.initState();
-    BlocProvider.of<PrayerTimeCubit>(context).getCurrentLocation();
+   // BlocProvider.of<PrayerTimeCubit>(context).getCurrentLocation();
   }
 
   PrayerTime? prayerTime;
