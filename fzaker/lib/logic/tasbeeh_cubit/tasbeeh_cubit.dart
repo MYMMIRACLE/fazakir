@@ -6,10 +6,9 @@ part 'tasbeeh_state.dart';
 
 class TasbeehCubit extends Cubit<TasbeehState> {
   TasbeehCubit() : super(TasbeehInitial());
-  int previousTasbeehCounter = 0;
   String tasbeehButtonLabel = 'سبحان الله';
   int tasbeehCounter = 0;
-  dynamic res = 0;
+  int res = CacheData.getdata(key: 'tasbeeh') ?? 0;
   void changeTasbeehButtonDisplay() {
     if (tasbeehButtonLabel == 'سبحان الله') {
       tasbeehButtonLabel = 'الحمد لله';
@@ -24,22 +23,22 @@ class TasbeehCubit extends Cubit<TasbeehState> {
     }
   }
 
-  void incrementTasbeehCounter() async {
+  Future<void> incrementTasbeehCounter() async {
     if (tasbeehCounter == 33) {
       tasbeehCounter = 0;
       if (CacheData.getdata(key: 'tasbeeh') == null) {
-        res = await CacheData.setData(key: 'tasbeeh', value: 1);
-        emit(TasbeehLastResult(tasbeehCounter: res));
+        await CacheData.setData(key: 'tasbeeh', value: 1);
+        emit(TasbeehLastResult(lastResult: res));
       } else {
-        res = await CacheData.setData(
+        await CacheData.setData(
             key: 'tasbeeh', value: CacheData.getdata(key: 'tasbeeh') + 1);
-        emit(TasbeehLastResult(tasbeehCounter: res));
+        emit(TasbeehLastResult(lastResult: res));
       }
       changeTasbeehButtonDisplay();
     } else {
       tasbeehCounter++;
+      emit(TasbeehIncrement());
     }
-    emit(TasbeehIncrement());
   }
 
   void resetTasbeehCounter() {

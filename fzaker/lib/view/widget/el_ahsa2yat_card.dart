@@ -4,8 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import '../../core/constant/color.dart';
 
-class El27sa2yatCard extends StatelessWidget {
-  const El27sa2yatCard({
+class ElahsayatCard extends StatelessWidget {
+  const ElahsayatCard({
     super.key,
     required this.title,
     required this.counterTitle,

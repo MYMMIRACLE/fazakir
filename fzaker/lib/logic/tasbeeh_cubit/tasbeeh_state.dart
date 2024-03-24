@@ -8,9 +8,9 @@ class TasbeehInitial extends TasbeehState {}
 class TasbeehIncrement extends TasbeehState {}
 
 class TasbeehLastResult extends TasbeehState {
-  final dynamic tasbeehCounter;
+  final int lastResult;
 
-  TasbeehLastResult({required this.tasbeehCounter});
+  TasbeehLastResult({required this.lastResult});
 }
 
 class TasbeehDecrement extends TasbeehState {}

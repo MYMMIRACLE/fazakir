@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:bloc/bloc.dart';
+import 'package:fazakir/data/service/prayer_time_api.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:meta/meta.dart';
 import '../../core/helper/location_helper.dart';
@@ -27,12 +28,12 @@ class PrayerTimeCubit extends Cubit<PrayerTimeState> {
   }
 
   Future<void> getPrayerTime(
-      {required double latitude, required double longitude}) async {
+      {required dynamic latitude, required dynamic longitude}) async {
     emit(PrayerTimeLoading());
     try {
-      PrayerTime prayerTimeData = await PrayerTimeRepository.fetchPrayerTimeData(
-          latitude: latitude, longitude: longitude);
-
+      PrayerTime prayerTimeData =
+          await PrayerTimeRepository.fetchPrayerTimeData(
+              latitude: latitude, longitude: longitude);
       emit(PrayerTimeSuccess(prayerTimeData: prayerTimeData));
     } on Exception catch (err) {
       emit(PrayerTimeFailure(errMessage: "There was an error!"));

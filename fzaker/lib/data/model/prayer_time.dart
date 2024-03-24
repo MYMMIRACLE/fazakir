@@ -1,5 +1,5 @@
 class PrayerTime {
-  final int code;
+  final num code;
   final String status;
   final List<Datum> data;
 
@@ -157,7 +157,7 @@ class Designation {
 }
 
 class GregorianMonth {
-  final int number;
+  final num number;
   final String en;
 
   GregorianMonth({
@@ -249,7 +249,7 @@ class Hijri {
 }
 
 class HijriMonth {
-  final int number;
+  final num number;
   final String en;
   final String ar;
 
@@ -349,7 +349,7 @@ class Meta {
 }
 
 class Method {
-  final int id;
+  final num id;
   final String name;
   final Params params;
   final Location location;
@@ -405,8 +405,8 @@ class Location {
 }
 
 class Params {
-  final int fajr;
-  final int isha;
+  final num fajr;
+  final num isha;
 
   Params({
     required this.fajr,
@@ -415,15 +415,15 @@ class Params {
 
   factory Params.fromJson(Map<String, dynamic> json) {
     return Params(
-      fajr: json['fajr'],
-      isha: json['isha'],
+      fajr: json['Fajr'],
+      isha: json['Isha'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'fajr': fajr,
-      'isha': isha,
+      'Fajr': fajr,
+      'Isha': isha,
     };
   }
 }
@@ -457,33 +457,33 @@ class Timings {
 
   factory Timings.fromJson(Map<String, dynamic> json) {
     return Timings(
-      fajr: json['fajr'],
-      sunrise: json['sunrise'],
-      dhuhr: json['dhuhr'],
-      asr: json['asr'],
-      sunset: json['sunset'],
-      maghrib: json['maghrib'],
-      isha: json['isha'],
-      imsak: json['imsak'],
-      midnight: json['midnight'],
-      firstthird: json['firstthird'],
-      lastthird: json['lastthird'],
+      fajr: json['Fajr'],
+      sunrise: json['Sunrise'],
+      dhuhr: json['Dhuhr'],
+      asr: json['Asr'],
+      sunset: json['Sunset'],
+      maghrib: json['Maghrib'],
+      isha: json['Isha'],
+      imsak: json['Imsak'],
+      midnight: json['Midnight'],
+      firstthird: json['Firstthird'],
+      lastthird: json['Lastthird'],
     );
   }
 
   Map<String, dynamic> toJson() {
     return {
-      'fajr': fajr,
-      'sunrise': sunrise,
-      'dhuhr': dhuhr,
-      'asr': asr,
-      'sunset': sunset,
-      'maghrib': maghrib,
-      'isha': isha,
-      'imsak': imsak,
-      'midnight': midnight,
-      'firstthird': firstthird,
-      'lastthird': lastthird,
+      'Fajr': fajr,
+      'Sunrise': sunrise,
+      'Dhuhr': dhuhr,
+      'Asr': asr,
+      'Sunset': sunset,
+      'Maghrib': maghrib,
+      'Isha': isha,
+      'Imsak': imsak,
+      'Midnight': midnight,
+      'Firstthird': firstthird,
+      'Lastthird': lastthird,
     };
   }
 }

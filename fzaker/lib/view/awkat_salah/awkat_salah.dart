@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:fazakir/logic/prayer_time_cubit/prayer_time_cubit.dart';
 import 'package:fazakir/view/widget/app_bar_bg.dart';
 import 'package:fazakir/view/widget/custom_button.dart';
+import 'package:fazakir/view/widget/custom_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -20,12 +21,6 @@ class AwkatAlSalahScreen extends StatefulWidget {
 }
 
 class _AwkatAlSalahScreenState extends State<AwkatAlSalahScreen> {
-  @override
-  void initState() {
-    super.initState();
-   // BlocProvider.of<PrayerTimeCubit>(context).getCurrentLocation();
-  }
-
   PrayerTime? prayerTime;
   @override
   Widget build(BuildContext context) {
@@ -63,40 +58,62 @@ class _AwkatAlSalahScreenState extends State<AwkatAlSalahScreen> {
           ),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 18.w),
-            child: Column(
-              children: [
-                BlocConsumer<PrayerTimeCubit, PrayerTimeState>(
-                  listener: (context, state) {
-                    if (state is PrayerTimeSuccess) {
-                      prayerTime = state.prayerTimeData;
-                      log(prayerTime!.data[0].timings.asr);
-                    }
-                  },
-                  builder: (context, state) {
-                    return Container(
-                        alignment: Alignment.center,
-                        height: 200.h,
-                        width: ScreenSize.width,
-                        color: MyColors.grey.withOpacity(0.2),
-                        child: const Text("Calender"));
-                  },
-                ),
-                BuildAwkatSalahCard(
-                    title: prayerTime?.data[0].timings.fajr ?? "",
-                    time: "4:50 ص"),
-                const BuildAwkatSalahCard(title: "الشروق", time: "4:50 ص"),
-                const BuildAwkatSalahCard(title: "الظهر", time: "4:50 ص"),
-                const BuildAwkatSalahCard(title: "العصر", time: "4:50 ص"),
-                const BuildAwkatSalahCard(title: "المغرب", time: "4:50 ص"),
-                const BuildAwkatSalahCard(title: "العشاء", time: "4:50 ص"),
-                Padding(
-                  padding: EdgeInsets.symmetric(vertical: 24.h),
-                  child: CustomButton(
-                    title: "فتح سجل الصلوات",
-                    onPressed: () {},
-                  ),
-                )
-              ],
+            child: BlocConsumer<PrayerTimeCubit, PrayerTimeState>(
+              listener: (context, state) {
+                if (state is PrayerTimeSuccess) {
+                  prayerTime = state.prayerTimeData;
+                }
+              },
+              builder: (context, state) {
+                return Column(children: [
+                  Container(
+                      alignment: Alignment.center,
+                      height: 200.h,
+                      width: ScreenSize.width,
+                      color: MyColors.grey.withOpacity(0.2),
+                      child: Column(
+                        children: [
+                          CustomText(
+                            "${prayerTime?.data[23].meta.timezone}",
+                            fontSize: 28,
+                          ),
+                          CustomText(
+                            "ميلادي ${prayerTime?.data[23].date.gregorian.date}",
+                            fontSize: 28,
+                          ),
+                          CustomText(
+                            "هجري ${prayerTime?.data[23].date.hijri.date}",
+                            fontSize: 28,
+                          ),
+                        ],
+                      )),
+                  BuildAwkatSalahCard(
+                      title: "الفجر",
+                      time: "${prayerTime?.data[24].timings.fajr}"),
+                  BuildAwkatSalahCard(
+                      title: "الشروق",
+                      time: "${prayerTime?.data[24].timings.sunrise}"),
+                  BuildAwkatSalahCard(
+                      title: "الظهر",
+                      time: "${prayerTime?.data[24].timings.dhuhr}"),
+                  BuildAwkatSalahCard(
+                      title: "العصر",
+                      time: "${prayerTime?.data[24].timings.asr}"),
+                  BuildAwkatSalahCard(
+                      title: "المغرب",
+                      time: "${prayerTime?.data[24].timings.maghrib}"),
+                  BuildAwkatSalahCard(
+                      title: "العشاء",
+                      time: "${prayerTime?.data[24].timings.isha}"),
+                  Padding(
+                    padding: EdgeInsets.symmetric(vertical: 24.h),
+                    child: CustomButton(
+                      title: "فتح سجل الصلوات",
+                      onPressed: () {},
+                    ),
+                  )
+                ]);
+              },
             ),
           )
         ],
